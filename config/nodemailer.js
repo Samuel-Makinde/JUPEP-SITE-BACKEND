@@ -8,7 +8,7 @@ module.exports = {
         minVersion: "TLSv1.2"
     }, // upgrade later with STARTTLS
     auth: {
-        user: "makindesamuel1999@gmail.com",
-        pass: "elyhzvmwgbspkqdc",
+        user: process.env.USER,
+        pass: process.env.PASSWORD,
     },
 }

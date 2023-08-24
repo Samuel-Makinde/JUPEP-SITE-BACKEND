@@ -40,6 +40,7 @@ const createNewUser = async (req, res) => {
     try {
         const hashedpassword = await bcrypt.hash(password, 10)
         const verificationToken = crypto.randomBytes(40).toString('hex')
+
         const user = await User.create({
             username,
             firstName,
@@ -48,7 +49,7 @@ const createNewUser = async (req, res) => {
             university,
             email,
             password: hashedpassword,
-            verificationToken
+            verificationToken,
 
         })
         const origin = 'http://localhost:3000';
@@ -64,7 +65,7 @@ const createNewUser = async (req, res) => {
         res.status(201).json({ msg: "Account Created, Email has been sent to your mailbox", data: user })
     } catch (error) {
         console.log("not saving")
-        // res.status(500).json({ "message": error.message })
+        res.status(500).json({ "message": error.message })
     }
 }
 

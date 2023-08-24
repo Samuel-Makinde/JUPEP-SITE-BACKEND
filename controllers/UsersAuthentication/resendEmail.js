@@ -1,5 +1,4 @@
 const User = require("../../models/Users")
-
 const sendVerificationEmail = require("../../utils/sendEmailVerification")
 const crypto = require("crypto")
 

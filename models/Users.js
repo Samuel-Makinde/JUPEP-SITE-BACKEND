@@ -41,6 +41,12 @@ const usersSchema = new Schema({
         type: Boolean,
         default: false
     },
+    passwordToken: {
+        type: String,
+    },
+    passwordTokenExpirationDate: {
+        type: String,
+    },
     verificationToken: String,
     refreshToken: String
 }, {
