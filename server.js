@@ -18,7 +18,10 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 // routes
-app.use('/api/v1/register', require("./routes/registerUser"));
+app.use('/api/v1', require("./routes/registerUser"));
+// app.use('/api/v1', require("./routes/registerUser"));
+// app.use('/api/v1', require("./routes/registerUser"));
+
 
 // start server
 mongoose.connection.once('open', () => {

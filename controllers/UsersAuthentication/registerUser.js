@@ -1,8 +1,10 @@
 const User = require("../../models/Users")
 const bcrypt = require("bcrypt")
 const crypto = require("crypto")
+const sendVerificationEmail = require("../../utils/sendEmailVerification")
 
 const createNewUser = async (req, res) => {
+    // to get user details from the request body
     const {
         username,
         firstName,
@@ -13,16 +15,26 @@ const createNewUser = async (req, res) => {
         password
     } = req.body;
 
-    if (req.body == null || req.body == undefined) {
-        res.status(400).json({
-            message: 'Bad request'
-        })
+    const details = [
+        "username",
+        "firstName",
+        "lastName",
+        "phoneNumber",
+        "university",
+        "email",
+        "password"
+    ];
+
+    for (const detail of details) {
+        if (!req.body[detail]) {
+            return res.status(400).json({ msg: `${detail} is required` });
+        }
     }
 
     // check for duplicate user by there email address
     const duplicateEmail = await User.findOne({ email: email })
     if (duplicateEmail) {
-        return res.sendStatus(409)
+        return res.status(409).json({ msg: "Email address is associated with an account" })
     }
 
     try {
@@ -39,7 +51,15 @@ const createNewUser = async (req, res) => {
             verificationToken
 
         })
-        // const origin = 'http://localhost:3000';
+        const origin = 'http://localhost:3000';
+
+        // to send email verification
+        await sendVerificationEmail({
+            username: user.username,
+            email: user.email,
+            verificationToken: user.verificationToken,
+            origin
+        })
         console.log(user)
         res.status(201).json({ msg: "Account Created, Email has been sent to your mailbox", data: user })
     } catch (error) {
