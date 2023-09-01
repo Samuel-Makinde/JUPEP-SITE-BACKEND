@@ -37,6 +37,11 @@ const usersSchema = new Schema({
         required: [true, "cannot be blank"],
         trim: true,
     },
+    role: {
+        type: String,
+        enum: ['admin', 'subscriber', 'user'],
+        default: 'user'
+    },
     isVerify: {
         type: Boolean,
         default: false
@@ -48,7 +53,10 @@ const usersSchema = new Schema({
         type: String,
     },
     verificationToken: String,
-    refreshToken: String
+    refreshToken: String,
+    refreshTokenExpiration: {
+        type: Date,
+    },
 }, {
     timestamps: true
 },

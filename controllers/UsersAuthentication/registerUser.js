@@ -40,6 +40,8 @@ const createNewUser = async (req, res) => {
     try {
         const hashedpassword = await bcrypt.hash(password, 10)
         const verificationToken = crypto.randomBytes(40).toString('hex')
+        const isFirstFourUsers = (await User.countDocuments({})) < 4;
+        const role = isFirstFourUsers ? 'admin' : 'user'
 
         const user = await User.create({
             username,
@@ -48,11 +50,12 @@ const createNewUser = async (req, res) => {
             phoneNumber,
             university,
             email,
+            role,
             password: hashedpassword,
             verificationToken,
 
         })
-        const origin = 'http://localhost:3000';
+        const origin = 'http://localhost:5000';
 
         // to send email verification
         await sendVerificationEmail({

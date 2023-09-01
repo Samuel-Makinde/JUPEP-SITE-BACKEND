@@ -44,27 +44,6 @@ EaseRead BACKEND API
         }
     ```
 
-
-* RESEND EMAIL
-    - if the user did not recieve mail in mail box, the user can hit this End point to resend the mail again
-
-    - URL: {BASE_URL}/api/v1/resend-email
-    - METHOD: POST
-    - REQUEST BODY: 
-    ```
-    {
-        email: 'easereads@gmail.com',
-        firstName: 'samuel',
-    }
-    
-    ```
-    - RESPONSE:
-    ```
-        {
-            message: "New verification email sent"
-        }
-    ```
-
 * VERIFY EMAIL
     - This endpoint makes the user to be Verified.
     - it will update the user verification status so as to allow the user login.
@@ -86,4 +65,108 @@ EaseRead BACKEND API
         }
     ```
 
+* RESEND EMAIL
+    - if the user did not recieve mail in mail box, the user can hit this End point to resend the mail again
+
+    - URL: {BASE_URL}/api/v1/resend-email
+    - METHOD: POST
+    - REQUEST BODY: 
+    ```
+    {
+        email: 'easereads@gmail.com',
+        firstName: 'samuel',
+    }
+    
+    ```
+    - RESPONSE:
+    ```
+        {
+            message: "New verification email sent"
+        }
+    ```
+
+* LOGIN USER
+    - this endpoints grants user Access to the site if they meet the required conditions(verified email).
+    - accesstoken and refreshtoken will be returned for Authorization purposes.
+    - A cookie will be set in the browser
+    
+    - URL: {BASE_URL}/api/v1/login
+    - METHOD: POST
+    - REQUEST BODY: 
+    ```
+    {
+        email: 'easeread@gmail.com',
+        password: easeread212,
+    }
+    
+    ```
+    - RESPONSE:
+    ```
+        {
+            message: "user Login successful",
+            data: {accessToken}
+        }
+    ```
+
+* FORGOT PASSWORD
+    - the user will have to input their email for Authentication. If their mail exists, an email will be sent to their mailbox
+    
+    - URL: {BASE_URL}/api/v1/forgot-password
+    - METHOD: POST
+    - REQUEST BODY: 
+    ```
+    {
+        email: 'easeread@gmail.com',
+    }
+    
+    ```
+    - RESPONSE:
+    ```
+        {
+            "message": "Please check your email for reset password link",
+            "data": {
+                "id": {user id},
+                "email": "easeread@gmail.com",
+                "firstName": "samuel"
+            }
+        }
+    ```
+
+* CHANGE PASSWORD
+    - This endpoint updates the user password.
+    - PARAM: `user id`
+    - URL: {BASE_URL}/api/v1/change-password/{PARAM}
+    - METHOD: POST
+    - REQUEST BODY: 
+    ```
+    {
+        email: 'example@gmail.com',
+    }
+    
+    ```
+    - RESPONSE:
+    ```
+        {
+           "message": "password has been changed successfully"
+        }
+    ```
+
+* LOGOUT USER
+    - This endpoint allow the user to logout of there account 
+    - Get user id from cookie sent during authorization for login
+    - URL: {BASE_URL}/api/v1//logOut
+    - METHOD: POST
+    - REQUEST BODY: 
+    ```
+    {
+        user: {user_id from cookie},
+    }
+    
+    ```
+    - RESPONSE:
+    ```
+        {
+           "message": "user logout sucessfully"
+        }
+    ```
 

@@ -21,6 +21,11 @@ const ForgotPassword = async (req, res) => {
             return res.status(404).json({ msg: 'User not found' });
         }
         if (user) {
+            const details = {
+                id: user._id,
+                email: user.email,
+                firstName: user.firstName
+            }
             const generatePasswordToken = crypto.randomBytes(70).toString('hex');
             const origin = 'http://localhost:5000';
             await sendForgotPasswordEmail({
@@ -37,10 +42,11 @@ const ForgotPassword = async (req, res) => {
             user.passwordTokenExpirationDate = passwordTokenExpirationDate
             await user.save()
             // console.log(user)
-            res.status(200).json({ msg: "Please check your email for reset password link", data: user })
+            res.status(200).json({ msg: "Please check your email for reset password link", data: details })
         }
     } catch (error) {
         res.status(500).json({ "message": error.message })
+        res.status(500).json({ msg: 'Internal server error' });
     }
 }
 
