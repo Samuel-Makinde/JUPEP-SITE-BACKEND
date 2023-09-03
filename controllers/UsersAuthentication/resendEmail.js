@@ -1,6 +1,8 @@
 const User = require("../../models/Users")
 const sendVerificationEmail = require("../../utils/sendEmailVerification")
 const crypto = require("crypto")
+const bcrypt = require("bcrypt")
+
 
 
 const resendEmail = async (req, res) => {

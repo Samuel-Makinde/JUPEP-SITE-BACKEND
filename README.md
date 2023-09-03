@@ -132,22 +132,24 @@ EaseRead BACKEND API
         }
     ```
 
-* CHANGE PASSWORD
+* RESET PASSWORD
     - This endpoint updates the user password.
-    - PARAM: `user id`
-    - URL: {BASE_URL}/api/v1/change-password/{PARAM}
+    - PARAM: `token`
+    - URL: {BASE_URL}/api/v1/reset-password/{PARAM}
     - METHOD: POST
     - REQUEST BODY: 
     ```
     {
+        token: {token from url_param},
         email: 'example@gmail.com',
+        password: 'newpassword'
     }
     
     ```
     - RESPONSE:
     ```
         {
-           "message": "password has been changed successfully"
+           "message": "password updated successfully"
         }
     ```
 

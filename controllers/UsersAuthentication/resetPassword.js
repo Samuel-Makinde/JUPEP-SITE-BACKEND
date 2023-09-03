@@ -23,7 +23,9 @@ const ResetPassword = async (req, res) => {
         if (user) {
             const currentDate = new Date()
             const hashedToken = crypto.createHash('sha256').update(token).digest('hex')
-            if (user.passwordToken === hashedToken
+            // convert mongodb time to object before comparing
+            const mongodbDate = new Date(user.passwordTokenExpirationDate);
+            if (user.passwordToken === hashedToken && mongodbDate > currentDate
             ) {
                 // const hashedpassword = await bcrypt.hash(password, 10)
                 user.password = password
