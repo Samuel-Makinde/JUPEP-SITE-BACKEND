@@ -135,7 +135,7 @@ EaseRead BACKEND API
 * RESET PASSWORD
     - This endpoint updates the user password.
     - PARAM: `token`
-    - URL: {BASE_URL}/api/v1/reset-password/{PARAM}
+    - URL: {BASE_URL}/api/v1/reset-password
     - METHOD: POST
     - REQUEST BODY: 
     ```
