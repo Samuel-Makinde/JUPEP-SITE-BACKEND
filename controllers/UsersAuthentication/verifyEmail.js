@@ -8,6 +8,10 @@ const verifyEmail = async (req, res) => {
         if (!user) {
             return res.status(404).json({ msg: 'User not found' });
         }
+
+        if (user.isVerify) {
+            return res.status(200).json({ msg: 'Email has been verified' });
+        }
         if (user.verificationToken !== verificationToken) {
             return res.status(400).json({ msg: 'Invalid verificationToken' });
         }

@@ -39,7 +39,7 @@ const resendEmail = async (req, res) => {
         user.verificationToken = NewverificationToken
         await user.save()
         // to send email verification
-        const origin = 'http://localhost:3000';
+        const origin = 'http://localhost:5173';
         await sendVerificationEmail({
             username: user.username,
             email: user.email,

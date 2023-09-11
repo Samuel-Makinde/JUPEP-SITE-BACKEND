@@ -53,7 +53,6 @@ const usersSchema = new Schema({
         type: String,
     },
     verificationToken: String,
-    refreshToken: String,
     refreshTokenExpiration: {
         type: Date,
     },

@@ -11,7 +11,14 @@ const generateRefreshToken = (id, email, role) => {
     return token
 }
 
+const isAccessTokenValid = (token) => jwt.verify(token, process.env.ACCESS_TOKEN);
+const isRefreshTokenValid = (token) => jwt.verify(token, process.env.REFRESH_TOKEN);
+
+
 module.exports = {
     generateAccessToken,
-    generateRefreshToken
+    generateRefreshToken,
+    isAccessTokenValid,
+    isRefreshTokenValid
+
 }

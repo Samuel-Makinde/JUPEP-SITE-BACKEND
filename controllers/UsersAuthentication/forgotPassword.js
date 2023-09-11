@@ -27,7 +27,7 @@ const ForgotPassword = async (req, res) => {
                 firstName: user.firstName
             }
             const generatePasswordToken = crypto.randomBytes(70).toString('hex');
-            const origin = 'http://localhost:5000';
+            const origin = 'http://localhost:5173';
             await sendForgotPasswordEmail({
                 username: user.username,
                 email: user.email,

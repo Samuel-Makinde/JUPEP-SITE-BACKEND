@@ -35,9 +35,8 @@ const LoginUser = async (req, res) => {
 
         // create refreshtoken
         let refreshToken = ''
-        const oneDay = 1000 * 60 * 60 * 24;
-        // const longerExp = 1000 * 60 * 60 * 24 * 30;
-        const longerExp = 1000 * 60 * 2;
+        const oneDay = 1000 * 60 * 24;
+        const longerExp = 1000 * 60 * 60 * 24 * 30;
 
 
 
@@ -97,7 +96,7 @@ const LoginUser = async (req, res) => {
             }
             )
         }
-        res.status(200).json({ msg: "User login successfully", accessToken: newAccessToken })
+        res.status(200).json({ msg: "User login successfully", accessToken: newAccessToken, username: user.username })
     } catch (error) {
         console.error("Error during login:", error);
         res.status(500).json({ msg: "internal server error" })

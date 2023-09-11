@@ -1,4 +1,4 @@
-const whiteList = ["http://localhost:5000"]
+const whiteList = ["http://localhost:5000", "http://localhost:5173", "https://jupep-site-4lis.vercel.app"]
 const corsOptions = {
     origin: (origin, callback) => {
         if (whiteList.indexOf(origin) !== -1 || !origin) {
@@ -7,7 +7,11 @@ const corsOptions = {
             callback(new Error("Access denied by cors"))
         }
     },
-    optionsSuccessStatus: 200
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    optionsSuccessStatus: 200,
+    credentials: true,
 }
+
+
 
 module.exports = corsOptions;

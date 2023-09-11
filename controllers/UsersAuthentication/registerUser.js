@@ -55,7 +55,7 @@ const createNewUser = async (req, res) => {
             verificationToken,
 
         })
-        const origin = 'http://localhost:5000';
+        const origin = 'http://localhost:5173';
 
         // to send email verification
         await sendVerificationEmail({
