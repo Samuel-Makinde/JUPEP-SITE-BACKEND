@@ -22,7 +22,7 @@ EaseRead BACKEND API
         firstName: 'samuel',
         lastName: 'makinde',
         email: 'easereads@gmail.com',
-        phone: "12345436361',
+        phoneNumber: "12345436361',
         university: "Unilag"
         password: "dfdasd123"
     }
@@ -135,7 +135,7 @@ EaseRead BACKEND API
 * RESET PASSWORD
     - This endpoint updates the user password.
     - PARAM: `token`
-    - URL: {BASE_URL}/api/v1/reset-password/{PARAM}
+    - URL: {BASE_URL}/api/v1/reset-password
     - METHOD: POST
     - REQUEST BODY: 
     ```
